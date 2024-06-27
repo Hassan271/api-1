@@ -71,7 +71,92 @@ def start():
 # def testApi():
 #     return ["dictionary","has","been","return"]
 
-# 10  JSON or Rest api Respone send by put { : }  in dictionary     ------------------------
-@app.get("/testApi")
-def testApi():
-    return {"dictionary":"return"}
+# # 10  JSON or Rest api Respone send by put { : }  in dictionary     ------------------------
+# @app.get("/testApi")
+# def testApi():
+#     return {"dictionary":"return"}
+
+# 11  Return by id by path variable/dynamic path to get data from fromtend     ------------------------
+# http://127.0.0.1:8011/returnByIdFun/id     id = may be 12,13.....................................
+# http://127.0.0.1:8011/returnbyidfun/13    ..................................
+
+@app.get("/returnByIdFun/{id}")
+def returnByIdFun(id):
+    print("print to Get by id  ", id)
+    return id
+
+# 12  Return by id by dynamic path to get data from 2 items userName + rollNo     ------------------------
+# http://127.0.0.1:8011/returnUserNameRoll/userNam/rollNo     id = may be 12,13....................................
+# http://127.0.0.1:8011/returnUserNameRoll/hassan/12    ..................................
+
+@app.get("/returnUserNameRoll/{userName}/{rollNO}")
+def returnUserNameRoll(userName:str , rollNO:str):
+    print("print to Get by id  ", userName , rollNO)
+    return userName + rollNO
+
+
+# 13  Query param to send data without path     ------------------------
+# http://127.0.0.1:8011/qParam/userNam/rollNo     id = may be 12,13....................................
+# http://127.0.0.1:8011/qParam/    ..................................
+
+@app.get("/qParam/{userName}/{rollNo}")
+def qParam(userName:str , rollNo:str):
+    print("print to Get by qParam  ", userName , rollNo)
+    return "Return by qParam"
+
+
+# 14  Query param to send data without path     ------------------------
+# http://127.0.0.1:8011/students/    ..................................
+
+# app = FastAPI()
+
+students = [
+    {
+    "userName": "Hassan",
+    "rollNo":   1111
+    },
+    {
+    "userName": "Hassan2",
+    "rollNo":   2222
+    }
+    
+        ]
+
+@app.get("/students")
+def getStudents():
+    return students
+
+# Add student in qParam ...................................
+# http://127.0.0.1:8011/addStudent/    ..................................check on postman 
+
+@app.get("/addStudent")
+def addStudent(userName:str , rollNo:str):
+    global students
+    students.append({"userName":userName, "rollNo":rollNo})
+    return students
+
+# Remove student in qParam ...................................
+# http://127.0.0.1:8011/removeStudent/    ..................................check on postman 
+#  http://127.0.0.1:8011/removeStudent/?userName=Hassan2&rollNo=2222    ..................................check on postman 
+
+@app.delete("/removeStudent")
+def removeStudent(userName:str , rollNo:str):
+    global students
+    # students.remove({"userName":userName, "rollNo":rollNo})
+    students = (student["userName"] == userName and student["rollNo"] == rollNo)
+    return students
+
+# Remove student in qParam ...................................
+# http://127.0.0.1:8011/updateStudent/    ..................................check on postman 
+#  http://127.0.0.1:8011/updateStudent/?userName=Hassan3&rollNo=3332    ..................................check on postman 
+
+@app.put("/updateStudent")
+def updateStudent(userName:str , rollNo:str):
+    global students
+    students.update({"userName":userName, "rollNo":rollNo})
+    return students
+
+
+
+
+
