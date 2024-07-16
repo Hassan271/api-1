@@ -35,11 +35,11 @@ def getSingleTodo():
     # print("getSingleTodo is called ")
     return "getSingleTodo has been returned"
 
-#   Test function   ------------------------
-@app.get("/")
-def testfunction():
-    print("print test function ")
-    return "Return testfunction"
+# #   Test function   ------------------------
+# @app.get("/")
+# def testfunction():
+#     print("print test function ")
+#     return "Return testfunction"
 
 #   update function   ------------------------
 @app.put("/updateTodo")
@@ -55,4 +55,19 @@ def start():
     uvicorn.run("todos.main:app", host="127.0.0.1", port=8011, reload=True)
     
     
+
+# # 7  Test function True / False    ------------------------
+# @app.get("/testApi")
+# def testApi():
+#     return True
+
+# # 8  Test function True / False    ------------------------
+# @app.get("/testApi")
+# def testApi():
+#     return [1,2,3]
+
+# 9  Dictionary send    ------------------------
+@app.get("/testApi")
+def testApi():
+    return ["dictionary","has","been","return"]
 
