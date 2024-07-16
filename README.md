@@ -2,4 +2,4 @@
 
 to run this project 
 
-poetry run start 
+poetry run dev
