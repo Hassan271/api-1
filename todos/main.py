@@ -35,11 +35,11 @@ def getSingleTodo():
     # print("getSingleTodo is called ")
     return "getSingleTodo has been returned"
 
-#   function   ------------------------
-# @app.get("/")
-# def testfunction():
-#     print("print test function ")
-#     return "Return test function"
+#   Test function   ------------------------
+@app.get("/")
+def testfunction():
+    print("print test function ")
+    return "Return testfunction"
 
 #   update function   ------------------------
 @app.put("/updateTodo")
