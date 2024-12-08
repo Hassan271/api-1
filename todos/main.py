@@ -66,8 +66,12 @@ def start():
 # def testApi():
 #     return [1,2,3]
 
-# 9  Dictionary send    ------------------------
+# # 9  Dictionary send    ------------------------
+# @app.get("/testApi")
+# def testApi():
+#     return ["dictionary","has","been","return"]
+
+# 10  JSON or Rest api Respone send by put { : }  in dictionary     ------------------------
 @app.get("/testApi")
 def testApi():
-    return ["dictionary","has","been","return"]
-
+    return {"dictionary":"return"}
